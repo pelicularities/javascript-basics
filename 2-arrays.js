@@ -5,6 +5,7 @@ const assertEquals = require("./assert-helper");
 // the returned array should be sorted in descending alphabetical order
 function reverseSortLetters(arrays) {
   // fill in your code
+  return arrays.sort().reverse();
 }
 
 // Assertions (do not change)
@@ -16,6 +17,8 @@ assertEquals(reverseSortLetters(["d", "c", "b", "a"]), ["d", "c", "b", "a"]);
 
 function getSmallest(numbers) {
   // fill in your code
+  const sortedNumbers = numbers.sort((a, b) => a - b);
+  return sortedNumbers[0];
 }
 
 // Assertions (do not change)
@@ -26,6 +29,7 @@ assertEquals(getSmallest([4, 3, 2, 1]), 1);
 // Define a function that returns the sum of an array
 function sum(array) {
   // fill in your code
+  return array.reduce((acc, val) => acc + val);
 }
 
 // Assertions (do not change)
@@ -36,6 +40,7 @@ assertEquals(sum([1, 2, 3, 4]), 10);
 // Define a function that returns an array of even numbers
 function evenNumbersOnly(array) {
   // fill in your code
+  return array.filter((number) => number % 2 == 0);
 }
 
 // Assertions (do not change)
@@ -47,6 +52,7 @@ assertEquals(evenNumbersOnly([10, 11, 12]), [10, 12]);
 // hint: reuse the 2 functions that you defined earlier.
 function sumEvenNumbers(array) {
   // fill in your code
+  return sum(evenNumbersOnly(array));
 }
 
 // Assertions (do not change)
@@ -60,9 +66,18 @@ assertEquals(sumEvenNumbers([10, 11, 12]), 22);
 
 function sortedUnion(arr1, arr2) {
   // fill in your code
+  const concatenatedArrays = arr1.concat(arr2);
+  const unionOfArrays = concatenatedArrays.reduce((acc, value) => {
+    if (!acc.includes(value)) {
+      acc.push(value);
+    }
+    return acc;
+  }, []);
+  return unionOfArrays.sort((a, b) => a - b);
 }
 
 // Assertions (do not change)
 assertEquals(sortedUnion([1], [2]), [1, 2]);
 assertEquals(sortedUnion([1, 3], [2]), [1, 2, 3]);
 assertEquals(sortedUnion([1, 3], [11, 2]), [1, 2, 3, 11]);
+assertEquals(sortedUnion([1, 2, 3], [100, 2, 1, 10]), [1, 2, 3, 10, 100]);

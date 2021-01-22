@@ -53,7 +53,18 @@ assertEquals(onlyNames(input), ["homer", "marge", "lisa"]);
 /* ---------------------- EXERCISE 3 ---------------------- */
 // define a function that removes any non-vowel character from words in an array
 function keepOnlyVowels(array) {
-  
+  // 1. iterate over each element in array
+  // 2. for each element:
+  //    a. convert string to array
+  //    b. array.filter each char
+  //        i. check if each char is included in string 'aeiou'
+  return array.map((element) => {
+    const chars = element.split('');
+    const vowels = chars.filter((char) => {
+      return 'aeiou'.includes(char);
+    });
+    return vowels.join('');
+  });
 }
 
 
